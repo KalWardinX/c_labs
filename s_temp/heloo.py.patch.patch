@@ -1,0 +1,9 @@
+1c1
+< import numpy as np
+---
+> asdlkfimport numpy as np
+5c5
+< print(a)
+\ No newline at end of file
+---
+> print(a)

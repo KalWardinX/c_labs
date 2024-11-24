@@ -1,0 +1,105 @@
+2d1
+< #include <string.h>
+4,5c3,4
+< #include <unistd.h>
+< #include <arpa/inet.h>
+---
+> #include <string.h>
+> #include <sys/types.h>
+7,53c6,7
+< #include <netinet/in.h>
+< 
+< 
+< #define BUF_SIZE 1024
+< 
+< int main(int argc, char *argv[])
+< {
+<     if (argc != 4)
+<     {
+<         printf("Usage: %s <server_ip> <server_port> <seed>\n", argv[0]);
+<         return -1;
+<     }
+< 
+<     char *ip = argv[1];
+<     int port = atoi(argv[2]);
+<     int seed = atoi(argv[3]);
+< 
+<     srand(seed);
+< 
+<     int sock, ret;
+<     struct sockaddr_in serv_addr;
+<     char *message = "hello";
+<     char buffer[BUF_SIZE] = {0};
+< 
+<     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+<     {
+<         printf("Socket creation error\n");
+<         return -1;
+<     }
+< 
+<     serv_addr.sin_family = AF_INET;
+<     serv_addr.sin_port = htons(port);
+< 
+<     // Convert IPv4 and IPv6 addresses from text to binary form
+<     if (inet_pton(AF_INET, ip, &serv_addr.sin_addr) <= 0)
+<     {
+<         printf("Invalid address/ Address not supported\n");
+<         return -1;
+<     }
+< 
+<     if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+<     {
+<         printf("Connection Failed\n");
+<         return -1;
+<     }
+< 
+<     sleep(rand() % 10);
+---
+> #include <netdb.h>
+> #include <arpa/inet.h>
+55,61d8
+<     ret = send(sock, message, strlen(message), 0);
+<     if (ret == -1)
+<     {
+<         printf("Failed to send message\n");
+<         return -1;
+<     }
+<     printf("Sent: %s\n", message);
+63,69c10,33
+<     ret = recv(sock, buffer, BUF_SIZE, 0);
+<     if (ret == -1)
+<     {
+<         printf("Failed to receive message\n");
+<         return -1;
+<     }
+<     printf("Received: %s\n", buffer);
+---
+> int main() {
+>     const char *hostname = "localhost";
+>     const char *port = "8080";  // Specify the port as a string
+>     struct addrinfo hints, *res;
+>     int status;
+> 
+>     // Zero out the hints structure and set options
+>     memset(&hints, 0, sizeof hints);
+>     hints.ai_family = AF_INET;        // Use AF_INET for IPv4
+>     hints.ai_socktype = SOCK_STREAM;  // TCP stream sockets
+> 
+>     // Get address information
+>     status = getaddrinfo(hostname, port, &hints, &res);
+>     if (status != 0) {
+>         fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
+>         return 1;
+>     }
+> 
+>     // Print the IP address and port
+>     struct sockaddr_in *ipv4 = (struct sockaddr_in *)res->ai_addr;
+>     char ipstr[INET_ADDRSTRLEN];
+>     inet_ntop(res->ai_family, &(ipv4->sin_addr), ipstr, sizeof ipstr);
+>     printf("Address: %s\n", ipstr);
+>     printf("Port: %d\n", ntohs(ipv4->sin_port));
+71c35,36
+<     close(sock);
+---
+>     // Free the linked list
+>     freeaddrinfo(res);
