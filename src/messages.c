@@ -46,14 +46,14 @@ msg_c recv_fr_client(uint32_t connfd){
 /* send and recv files */
 void send_file(uint32_t fd, uint32_t connfd){
     fileobj f;
-    printf("send start\n");
+    // printf("send start\n");
     f.is_end = 0;
     while((f.end = read(fd, f.data, sizeof(FILE_OBJ_SIZE)))){
         // printf("file %u %u %s\n", f.is_end, f.end, f.data);
         send(connfd, &f, sizeof(f), 0);
         memset(f.data, 0, FILE_OBJ_SIZE);
     }
-    printf("send end\n");
+    // printf("send end\n");
 
     f.is_end = 1;
     f.end=0;
@@ -64,7 +64,7 @@ void send_file(uint32_t fd, uint32_t connfd){
 
 void recv_file(uint32_t fd, uint32_t connfd){
     fileobj f;
-    printf("start recv\n");
+    // printf("start recv\n");
     while(1){
         memset(&f, 0, sizeof(f));
         recv(connfd, &f, sizeof(f), 0);
@@ -73,6 +73,6 @@ void recv_file(uint32_t fd, uint32_t connfd){
         }
         write(fd, f.data, f.end);
     }
-    printf("done\n");
+    // printf("done\n");
     return ;
 }

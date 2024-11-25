@@ -6,8 +6,8 @@ void prompt(int connfd){
         write(STDOUT_FILENO, prompt, 11);
         char input[IP_SIZE] = {'\0'};
         int rd = read(STDIN_FILENO, input, IP_SIZE);
-        printf("input = %s\n", input);
-        fflush(stdout);
+        // printf("input = %s\n", input);
+        // fflush(stdout);
         int ret = parse_input(input, connfd);
         if(ret == 1){
             break;
@@ -18,8 +18,8 @@ void prompt(int connfd){
 
 int parse_input(char* input, int connfd){
     char* token = "";
-    printf("parseinput = %s\n", input);
-        fflush(stdout);
+    // printf("parseinput = %s\n", input);
+        // fflush(stdout);
     token = strtok(input, " \n\0");
 
     if( strcmp(token, "list") == 0 ){
@@ -27,8 +27,8 @@ int parse_input(char* input, int connfd){
     }
     else if( strcmp(token, "read") == 0 ){
         token = strtok(0, " \n\0");
-        printf("input %s, token %s\n", input, token);
-        fflush(stdout);
+        // printf("input %s, token %s\n", input, token);
+        // fflush(stdout);
         c_read_file(connfd, token);
     }
     else if( strcmp(token, "write") == 0 ){

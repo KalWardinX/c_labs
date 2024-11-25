@@ -16,7 +16,7 @@ void del_lock(rwlock* lock){
 int begin_read(rwlock* lock){
     pthread_mutex_lock(&lock->r);
     lock->r_count++;
-    printf("read count begin read %d\n", lock->r_count);
+    // printf("read count begin read %d\n", lock->r_count);
     fflush(stdout);
     if(lock->r_count==1)
         pthread_mutex_lock(&lock->w);
@@ -26,7 +26,7 @@ int begin_read(rwlock* lock){
 int end_read(rwlock* lock){
     pthread_mutex_lock(&lock->r);
     lock->r_count--;
-    printf("read count end read %d\n", lock->r_count);
+    // printf("read count end read %d\n", lock->r_count);
     fflush(stdout);
     if(lock->r_count==0)
         pthread_mutex_unlock(&lock->w);

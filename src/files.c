@@ -1,6 +1,6 @@
 #include<c_labs.h>
 file* getfile(char* filename){
-    printf("getfile here\n");
+    // printf("getfile here\n");
     file* temp = malloc(sizeof(file));
     temp->filename = strdup(filename);
     temp->lock = init_lock();
@@ -36,10 +36,10 @@ int file_exists(files* f, char* filename){
 }
 
 int search_file(files* f, char* filename){
-    printf("file %s \n", filename);
+    // printf("file %s \n", filename);
     for( int i=0; i<f->end; i++){
         if  (strcmp(f->filearr[i]->filename, filename)==0){
-            printf("index %d\n",i);
+            // printf("index %d\n",i);
             return i;
         }
             
@@ -60,7 +60,7 @@ int submit_file(files* f, char* filename){
 int unsubmit_file(files* f, char* filename){
     int ind = -1;
     if((ind = file_exists(f, filename))==-1){
-        printf("something went wrong\n");
+        // printf("something went wrong\n");
         return 0;
     }
     delfile(f->filearr[ind]);
@@ -75,7 +75,7 @@ int first_init(files* f){
     DIR *dp;
     struct dirent *i;     
     dp = opendir (FILE_DIR);
-    printf("start here\n");
+    // printf("start here\n");
     fflush(stdout);
     if (dp != NULL)
     {
@@ -98,10 +98,10 @@ int first_init(files* f){
 
 bool acquire_writelock(files* f, char* filename){
     int index = search_file(f, filename);
-        printf("index %d\n", index);
+        // printf("index %d\n", index);
     // pthread_mutex_lock(&f->filearr[index]->w);
     begin_write(f->filearr[index]->lock);
-        printf("lock acq wrt\n");
+        // printf("lock acq wrt\n");
 
 }
 bool release_writelock(files* f, char* filename){
