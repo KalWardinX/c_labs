@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <fcntl.h>
 
 #define CLIENT_MSG_SIZE 63
 #define SERV_MSG_SIZE 63

@@ -2,6 +2,16 @@
 
 
 int main(int argc, char** argv){
+    char command[256];
+    sprintf(command, "mkdir -p %s", READ_DIR);
+    system(command);
+    sprintf(command, "mkdir -p %s", TEMP_DIR);
+    system(command);
+    sprintf(command, "mkdir -p %s", PATCH_DIR);
+    system(command);
+    sprintf(command, "mkdir -p %s", WRITE_DIR);
+    system(command);
+
     if (argc != 3){
         printf("Usage: %s <server_ip> <server_port>", argv[0]);
         exit(1);
@@ -37,5 +47,13 @@ int main(int argc, char** argv){
     prompt(sock);
 
     close(sock);
+    sprintf(command, "rm -rf %s", READ_DIR);
+    system(command);
+    sprintf(command, "rm -rf %s", TEMP_DIR);
+    system(command);
+    sprintf(command, "rm -rf %s", PATCH_DIR);
+    system(command);
+    sprintf(command, "rm -rf %s", WRITE_DIR);
+    system(command);
     return 0;
 }

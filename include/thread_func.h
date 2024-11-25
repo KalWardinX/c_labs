@@ -1,7 +1,7 @@
 #ifndef THREAD_FUNC
 #define THREAD_FUNC
 #include<messages.h>
-
+#include<fcntl.h>
 /* args */
 
 typedef struct args{

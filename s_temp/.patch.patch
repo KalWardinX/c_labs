@@ -1,7 +1,0 @@
-4,5c4,5
-< 
-< print(a)
-\ No newline at end of file
----
-> b = np.array([9,8,7])
-> print(a+b)

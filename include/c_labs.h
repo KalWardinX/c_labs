@@ -18,6 +18,7 @@
 #include <dirent.h>
 #include <string.h>
 #include <memory.h>
+#include <fcntl.h>
 
 
 #define SERVER_ADDRESS  "localhost"

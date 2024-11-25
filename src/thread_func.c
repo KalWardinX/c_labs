@@ -1,5 +1,6 @@
 #include <c_labs.h>
 #include <dirent.h>
+#include <fcntl.h>
 #define BUFFER_SIZE 512
 extern files* files_list;
 static void read_file(char* path){
@@ -271,7 +272,7 @@ void del(int connfd, char* filename){
     char path[PATH_SIZE];
     sprintf(path, "%s/%s", FILE_DIR, filename);
     if (remove(path)==0){
-        send_to_client(connfd, CMD_FAILED, "File deleted successfully");
+        send_to_client(connfd, CMD_SUCCESS, "File deleted successfully");
         // release lock
         release_writelock(files_list, filename);
         // unsubmit file

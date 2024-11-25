@@ -7,6 +7,13 @@ files* files_list;
 /*================================*/
 
 int main( int argc, char** argv ){
+    char command[256];
+    sprintf(command, "mkdir -p %s", FILE_DIR);
+    system(command);
+    sprintf(command, "mkdir -p %s", TEMP_DIR);
+    system(command);
+    sprintf(command, "mkdir -p %s", PATCH_DIR);
+    system(command);
 // Validate Arguments
     if( (argc < 2 || argc > 5) || (strcmp(argv[1], "help")==0 || (strcmp(argv[1], "run")!=0)) ){
         fprintf(stdout, "Usage: %s option [Server Address] [Port Number] [Thread Count]\n", argv[0]);
@@ -128,6 +135,11 @@ int main( int argc, char** argv ){
     threadpool_join(tp);
 
 //  Close python interpreter
-    // Py_Finalize();
+    // Py_Finalize();m
+    // char command[256];
+    sprintf(command, "rmdir -rf %s", TEMP_DIR);
+    system(command);
+    sprintf(command, "rmdir -rf %s", PATCH_DIR);
+    system(command);
     return EXIT_SUCCESS;
 }
