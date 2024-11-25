@@ -2,6 +2,13 @@
 
 
 int main(int argc, char** argv){
+
+
+    if (argc != 3){
+        printf("Usage: %s <server_ip> <server_port>", argv[0]);
+        exit(1);
+    }
+
     char command[256];
     sprintf(command, "mkdir -p %s", READ_DIR);
     system(command);
@@ -11,12 +18,7 @@ int main(int argc, char** argv){
     system(command);
     sprintf(command, "mkdir -p %s", WRITE_DIR);
     system(command);
-
-    if (argc != 3){
-        printf("Usage: %s <server_ip> <server_port>", argv[0]);
-        exit(1);
-    }
-
+    
     char *serv_addr = argv[1];
     int port = atoi(argv[2]);
 

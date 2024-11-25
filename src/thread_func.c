@@ -288,7 +288,7 @@ void list(int connfd){
     printf("in list\n");
     fflush(stdout);
     char path[PATH_SIZE];
-    sprintf(path, "%s/list_%lu,txt", TEMP_DIR, pthread_self());
+    sprintf(path, "%s/list_%lu.txt", TEMP_DIR, pthread_self());
     printf("path %s\n", path);
     int fd = open(path, O_CREAT|O_RDWR|O_TRUNC, 0644);
     listdir(fd, FILE_DIR);

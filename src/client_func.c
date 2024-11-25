@@ -86,7 +86,7 @@ void c_write_file(int connfd, char* filename){
     recv_file(fd, connfd);
     close(fd);
     read_file(out_patch);
-    send_to_client(connfd, REL_WL, filename);
+    send_to_serv(connfd, REL_WL, filename);
     // recv_fr_client(connfd);
 }
 
