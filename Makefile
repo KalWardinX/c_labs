@@ -50,4 +50,4 @@ $(OBJ)/%.o : $(SRC)/%.c
 
 
 clean:
-	rm -f $(OUT)/* $(OBJ)/* $(SERVER_PROG)
+	rm -f $(OUT)/* $(OBJ)/* $(SERVER_PROG) $(CLIENT_PROG) $(CLIENT_PROG2)
