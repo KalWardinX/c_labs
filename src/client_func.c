@@ -121,6 +121,15 @@ void c_run_file(int connfd, char* filename){
 
 void c_help(){
     fprintf(stdout, "TODO :)\n");
+    fprintf(stdout, "Commands:\n");
+    fprintf(stdout, "\tlist : list files in server\n");
+    fprintf(stdout, "\tread <filename>\t\t: read file from server\n");
+    fprintf(stdout, "\twrite <filename>\t\t: write file to server\n");
+    fprintf(stdout, "\trun <filename>\t\t: run file in server\n");
+    fprintf(stdout, "\tdel <filename>\t\t: del file from server\n");
+    fprintf(stdout, "\texit          \t\t: exit from server\n");
+    fprintf(stdout, "\thelp          \t\t: print this help\n");
+    fflush(stdout);
 }
 
 void c_exit(int connfd){
