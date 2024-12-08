@@ -14,16 +14,16 @@
     ```
 - ## Output
     - **Starting server**
-        - ![c_labs_server](image.png)
+        - ![c_labs_server](images/image.png)
     - **list command**
-        - ![list_files](image-1.png)
+        - ![list_files](images/image-1.png)
     - **reading a file**
-        - ![read_files](image-2.png)
+        - ![read_files](images/image-2.png)
     - **Performing 2 writes concurrently but latter one blocks**
-        - ![2_write](image-3.png)
+        - ![2_write](images/image-3.png)
     - **Current writing client exits writing, now the blocked writer can perform write**
-        - ![after_one_exit](image-4.png)
+        - ![after_one_exit](images/image-4.png)
     - **deleting file**
-        - ![delete](image-5.png)
+        - ![delete](images/image-5.png)
     - **exit**
-        - ![exit](image-6.png)
+        - ![exit](images/image-6.png)

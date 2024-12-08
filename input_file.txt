@@ -1,3 +1,0 @@
-list
-run hello.py
-run worldpeace.py
